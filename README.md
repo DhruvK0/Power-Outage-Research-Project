@@ -79,6 +79,23 @@ Now we get a cleaned version of the dataframe
 
 ### Univariate Analysis
 We started with a grouped frequency distribution of the outages based on their dates. We noticed a large uptick in power outages from 2010-2011, followed by a steady decline. We hypothesize that the low number of outages in the earlier years is due to a less widespread infrastructure.
+<iframe src="yearly_distribution.html" width=600 height=450 frameBorder=0></iframe>
+
+We also looked at some other factors
+
+Severe Weather: we found that the uptick in 2011 was less great than that of all power outages, indicating that severe weather, which partially responsible, likely was not the sole reason why this happened. Generally, we thought this looked like the most evenly distributed distribution, with a left skew.
+
+Intentional Attack: we noticed that there were little-to-no outages caused by intentional attack leading up to 2011, when there was a significant peak and steady decline. We find it unlikely there were no intentional attacks leading up to that year, rather, increased awareness, detection, and reporting led to that conclusion.
+
+System Operability Disruption: we found that within this graph, there were significantly more local minima and local maxima in comparison to other causes -- leading us to believe that outages due to system operability disruptions are a bit more random.
+
+Equipment Failure: We noticed that after dipping from 2010 to 2012 and reupping in 2013, the number of outages due to equipment failure dropped to 0. We believe this makes sense given that equipment failure is the most easily controllable/solvable for those in charge of power structures.
+
+Public Appeal: For some reason, the distribution has a major central tendency around 2009-2011, but our best guess for the reason as to why is the Great Recession, which began in 2008.
+
+Fuel Supply Emergency: We noticed the distribution for this cause being left-skewed. We think that this is likely because of, similar to intentional attack, more of the outages were able to be traced back to fuel supply.
+
+Islanding: We once again noticed that there was no islanding up until a certain year. We hypothesize that this, however, could've been due to a transition by people towards reliance on solar energy -- the fluctuations in numbers of power outages by year could be due to differing levels of sunlight each year.
 
 
 ## Hypothesis Testing
