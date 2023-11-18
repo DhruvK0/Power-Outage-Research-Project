@@ -5,6 +5,7 @@ Names: Dhruv Kanetkar and Justin Chou
 
 ## Introduction
 
+### Research Question: How has major power outage incident response improved over time?
 The electrical grid is a very important infrastructual technology in the world. It provides power to pretty much everything that we use on a day to day basis. However, due to factors such as weather and load on the grid, outages are a common occurance. In this project, we dive deeper into a comprehensive dataset on power outages and critical information related to them. Our goal is to understand whether or not restoration time for these major power outages is decreasing over the years, this will provide as a basis to figure out what protocols and systems may need to be improved for faster restoration times.
 
 The dataset was pulled from Purdue University's LASCI Research Data and provides data on major power outage events in the continental U.S from January 2000 to July 2016. One important piece to note is that outages reported in this dataset only affected a single U.S. state at the time the outage occured. Included in the dataset is information such as year, month, climate region, anomaly level, outage start date, outage restoration date, categories of the causes, detailed descriptions of the event categories, outage duration, monthly electricity price, and electricity consumption. The dataset has 1540 rows, meaning 1540 different cases of major power outages. The dataframe also has 57 columns, for the purposes of our analysis, we will primarily be looking at the following columns: OBS which is the ID of each observed outage, YEAR which is the year the outage event occured randing from 2000-2016, and OUTAGE.DURATION which is the total duration in minutes of the outage. We will also be combining columns on outage start time and date as well as restoration time and date for easier readibility.
@@ -21,7 +22,7 @@ We first remove all unnecessary columns and rows from the dataset, this includes
 
 ## Hypothesis Testing
 
-To reiterate, the question that we are concerned with is: How has major power outage incident response improved over time? Is there a clear trend?
+To reiterate, the question that we are concerned with is: How has major power outage incident response improved over time?
 
 For this section, we will define incident response time as the duration of the major power outage, with lower time intervals indicating faster incident response. We will also define older major outages as occuring from the years 2000 to 2008, and recent major outages occuring from the years 2009 to 2016. We will conduct a permutation test.
 
