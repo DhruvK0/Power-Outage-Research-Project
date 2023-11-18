@@ -66,9 +66,6 @@ The columns `OUTAGE.START.TIME` and `OUTAGE.START.DATE` need to be combined into
 
 Now we get a cleaned version of the dataframe
 
-<details>
-  <summary>Click to expand table</summary>
-
   | OBS | YEAR | MONTH | U.S._STATE | POSTAL.CODE | NERC.REGION | CLIMATE.REGION | ANOMALY.LEVEL | CLIMATE.CATEGORY | CAUSE.CATEGORY | ... | POPDEN_URBAN | POPDEN_UC | POPDEN_RURAL | AREAPCT_URBAN | AREAPCT_UC | PCT_LAND | PCT_WATER_TOT | PCT_WATER_INLAND | OUTAGE.START           | OUTAGE.RESTORATION      |
   |-----|------|-------|-------------|-------------|-------------|-----------------|---------------|-------------------|----------------|-----|--------------|-----------|--------------|---------------|------------|----------|---------------|-------------------|------------------------|-------------------------|
   | 1   | 2011 | 7     | Minnesota   | MN          | MRO         | East North Central | -0.3          | normal            | severe weather  | ... | 2279         | 1700.5    | 18.2         | 2.14          | 0.6        | 91.592666 | 8.407334      | 5.478743          | 2011-07-01 17:00:00   | 2011-07-03 20:00:00    |
@@ -76,8 +73,6 @@ Now we get a cleaned version of the dataframe
   | 3   | 2010 | 10    | Minnesota   | MN          | MRO         | East North Central | -1.5          | cold              | severe weather  | ... | 2279         | 1700.5    | 18.2         | 2.14          | 0.6        | 91.592666 | 8.407334      | 5.478743          | 2010-10-26 20:00:00   | 2010-10-28 22:00:00    |
   | 4   | 2012 | 6     | Minnesota   | MN          | MRO         | East North Central | -0.1          | normal            | severe weather  | ... | 2279         | 1700.5    | 18.2         | 2.14          | 0.6        | 91.592666 | 8.407334      | 5.478743          | 2012-06-19 04:30:00   | 2012-06-20 23:00:00    |
   | 5   | 2015 | 7     | Minnesota   | MN          | MRO         | East North Central | 1.2           | warm              | severe weather  | ... | 2279         | 1700.5    | 18.2         | 2.14          | 0.6        | 91.592666 | 8.407334      | 5.478743          | 2015-07-18 02:00:00   | 2015-07-19 07:00:00    |
-
-</details>
 
 ### Univariate Analysis
 We started with a grouped frequency distribution of the outages based on their dates. We noticed a large uptick in power outages from 2010-2011, followed by a steady decline. We hypothesize that the low number of outages in the earlier years is due to a less widespread infrastructure.
@@ -104,8 +99,6 @@ Similar to the last scatter plot, we noticed that demand loss decreased over tim
 ### Interesting Aggregates
 We noticed that from the eye test, the most recent years generally had lower average outage durations across the board, which was an encouraging sign. Aside from that, however, there weren't too many strong trends.
 
-<details>
-  <summary>Click to expand table</summary>
 
   | CLIMATE.REGION | Central | East North Central | Northeast | Northwest | South | Southeast | Southwest | West | West North Central |
   | -------------- | ------- | ------------------ | --------- | --------- | ----- | --------- | --------- | ---- | ------------------- |
@@ -127,17 +120,11 @@ We noticed that from the eye test, the most recent years generally had lower ave
   | 2014           | 996.3   | 10037.4            | 5536.2    | 385.0     | 543.5 | 1780.7    | 82.8      | 308.8| 56.0                |
   | 2015           | 168.5   | 1961.3             | 1692.4    | 1075.9    | 1452.9| 1796.8    | 51.3      | 257.2| 0.0                 |
   | 2016           | 1199.0  | 1139.3             | 1771.3    | 678.8     | 1947.6| 535.0     | 658.0     | 12433.8| 0.0                |
-
-</details>
-
+  
 There was a general trend across all regions that the demand loss was shrinking, which is another encouraging sign that we are starting to minimize the impact of the outages
 
 ## Assessment of Missingness
 As we can see there are columns that have many null values, such as DEMAND.LOSS.MW, which need to be filled in.
-Certainly! Here is the provided data on the columns Non-Null Count and Dtype converted into a Markdown table with collapsible sections:
-
-<details>
-  <summary>Click to expand table</summary>
 
   | Column                | Non-Null Count | Dtype              |
   | -------------------- | -------------- | ------------------ |
@@ -165,9 +152,23 @@ Certainly! Here is the provided data on the columns Non-Null Count and Dtype con
   | OUTAGE.START         | 1525           | datetime64[ns]     |
   | OUTAGE.RESTORATION   | 1476           | datetime64[ns]     |
 
-</details>
+### NMAR Analysis
+For a column to not be missing at random we need to think about whether there could be column values that affect whether or not other column values could be missing or not. Based on the data for major power outages. The research paper providing this data states that all data not found was filled in as null. Looking at the columns there could be column values that are NMAR, one clear example would be OUTAGE.DURATION, which is the time between OUTAGE.START and OUTAGE.RESTORATION, so if one of the values was not provided, then the duration value would also be missing.
 
+### Missingness Dependency
 
+We're going to start with the CAUSE.CATEGORY, as we think that the cause of the outage could also cause issues in areas such as tracking, resulting in an inability to predict the loss in demand.
+
+Our alpha value is 0.05, and we're using the TVD as a test statistic because we're looking at differences in distributions between categories.
+
+Null Hypothesis: There is no difference in distributions of missingness between categories.
+Alternative Hypothesis: There is a difference in distributions of missingness between categories.
+
+Our observed test statistic is: `0.17869773888047633`
+
+Now, let's simulate the test statistic 10000 times under the assumption of the null by shuffling the values of the DEMAND.LOSS.MW.
+
+We get a P-Value of `0.6822`. Because p > 0.05, we fail to reject the null hypothesis that OUTAGE.DURATION affects the missingness of DEMAND.LOSS.MW.
 
 ## Hypothesis Testing
 
