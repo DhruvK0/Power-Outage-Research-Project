@@ -54,7 +54,8 @@ We can see that OUTAGE.DURATION is numerical so it is appropriate to use the dif
 The observed difference in mean duration is `1862.8979668`
 
 ### Permutation Test
-> Insert Graph
+<iframe src="outage_duration_permutation_test.html" width=800 height=600 frameBorder=0></iframe>
+
 We ran this permutation test 10000 times and plotted the distribution, the red line marked the observed statistic for the difference of mean duration time.
 
 ### Hypothesis Testing Conclusion
