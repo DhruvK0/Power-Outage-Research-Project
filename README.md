@@ -66,7 +66,7 @@ The columns `OUTAGE.START.TIME` and `OUTAGE.START.DATE` need to be combined into
 
 Now we get a cleaned version of the dataframe
 
-<details  style="max-width: 600px;">
+<details>
   <summary>Click to expand table</summary>
 
   | OBS | YEAR | MONTH | U.S._STATE | POSTAL.CODE | NERC.REGION | CLIMATE.REGION | ANOMALY.LEVEL | CLIMATE.CATEGORY | CAUSE.CATEGORY | ... | POPDEN_URBAN | POPDEN_UC | POPDEN_RURAL | AREAPCT_URBAN | AREAPCT_UC | PCT_LAND | PCT_WATER_TOT | PCT_WATER_INLAND | OUTAGE.START           | OUTAGE.RESTORATION      |
@@ -104,7 +104,7 @@ Similar to the last scatter plot, we noticed that demand loss decreased over tim
 ### Interesting Aggregates
 We noticed that from the eye test, the most recent years generally had lower average outage durations across the board, which was an encouraging sign. Aside from that, however, there weren't too many strong trends.
 
-<details style="max-width: 600px;">
+<details>
   <summary>Click to expand table</summary>
 
   | CLIMATE.REGION | Central | East North Central | Northeast | Northwest | South | Southeast | Southwest | West | West North Central |
@@ -136,7 +136,7 @@ There was a general trend across all regions that the demand loss was shrinking,
 As we can see there are columns that have many null values, such as DEMAND.LOSS.MW, which need to be filled in.
 Certainly! Here is the provided data on the columns Non-Null Count and Dtype converted into a Markdown table with collapsible sections:
 
-<details  style="max-width: 600px;">
+<details>
   <summary>Click to expand table</summary>
 
   | Column                | Non-Null Count | Dtype              |
