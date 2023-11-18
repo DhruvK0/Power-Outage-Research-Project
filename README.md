@@ -159,6 +159,10 @@ For a column to not be missing at random we need to think about whether there co
 
 We're going to start with the CAUSE.CATEGORY, as we think that the cause of the outage could also cause issues in areas such as tracking, resulting in an inability to predict the loss in demand.
 
+<iframe src="missing.html" width=600 height=450 frameBorder=0></iframe>
+<iframe src="non_missing.html" width=600 height=450 frameBorder=0></iframe>
+
+
 Our alpha value is 0.05, and we're using the TVD as a test statistic because we're looking at differences in distributions between categories.
 
 Null Hypothesis: There is no difference in distributions of missingness between categories.
