@@ -66,16 +66,18 @@ The columns `OUTAGE.START.TIME` and `OUTAGE.START.DATE` need to be combined into
 
 Now we get a cleaned version of the dataframe
 
-| OBS | YEAR | MONTH | U.S._STATE | POSTAL.CODE | NERC.REGION | CLIMATE.REGION | ANOMALY.LEVEL | CLIMATE.CATEGORY | CAUSE.CATEGORY | ... | POPDEN_URBAN | POPDEN_UC | POPDEN_RURAL | AREAPCT_URBAN | AREAPCT_UC | PCT_LAND | PCT_WATER_TOT | PCT_WATER_INLAND | OUTAGE.START           | OUTAGE.RESTORATION      |
-|-----|------|-------|-------------|-------------|-------------|-----------------|---------------|-------------------|----------------|-----|--------------|-----------|--------------|---------------|------------|----------|---------------|-------------------|------------------------|-------------------------|
-| 1   | 2011 | 7     | Minnesota   | MN          | MRO         | East North Central | -0.3          | normal            | severe weather  | ... | 2279         | 1700.5    | 18.2         | 2.14          | 0.6        | 91.592666 | 8.407334      | 5.478743          | 2011-07-01 17:00:00   | 2011-07-03 20:00:00    |
-| 2   | 2014 | 5     | Minnesota   | MN          | MRO         | East North Central | -0.1          | normal            | intentional attack | ... | 2279         | 1700.5    | 18.2         | 2.14          | 0.6        | 91.592666 | 8.407334      | 5.478743          | 2014-05-11 18:38:00   | 2014-05-11 18:39:00    |
-| 3   | 2010 | 10    | Minnesota   | MN          | MRO         | East North Central | -1.5          | cold              | severe weather  | ... | 2279         | 1700.5    | 18.2         | 2.14          | 0.6        | 91.592666 | 8.407334      | 5.478743          | 2010-10-26 20:00:00   | 2010-10-28 22:00:00    |
-| 4   | 2012 | 6     | Minnesota   | MN          | MRO         | East North Central | -0.1          | normal            | severe weather  | ... | 2279         | 1700.5    | 18.2         | 2.14          | 0.6        | 91.592666 | 8.407334      | 5.478743          | 2012-06-19 04:30:00   | 2012-06-20 23:00:00    |
-| 5   | 2015 | 7     | Minnesota   | MN          | MRO         | East North Central | 1.2           | warm              | severe weather  | ... | 2279         | 1700.5    | 18.2         | 2.14          | 0.6        | 91.592666 | 8.407334      | 5.478743          | 2015-07-18 02:00:00   | 2015-07-19 07:00:00    |
+<details  style="max-width: 600px;">
+  <summary>Click to expand table</summary>
 
+  | OBS | YEAR | MONTH | U.S._STATE | POSTAL.CODE | NERC.REGION | CLIMATE.REGION | ANOMALY.LEVEL | CLIMATE.CATEGORY | CAUSE.CATEGORY | ... | POPDEN_URBAN | POPDEN_UC | POPDEN_RURAL | AREAPCT_URBAN | AREAPCT_UC | PCT_LAND | PCT_WATER_TOT | PCT_WATER_INLAND | OUTAGE.START           | OUTAGE.RESTORATION      |
+  |-----|------|-------|-------------|-------------|-------------|-----------------|---------------|-------------------|----------------|-----|--------------|-----------|--------------|---------------|------------|----------|---------------|-------------------|------------------------|-------------------------|
+  | 1   | 2011 | 7     | Minnesota   | MN          | MRO         | East North Central | -0.3          | normal            | severe weather  | ... | 2279         | 1700.5    | 18.2         | 2.14          | 0.6        | 91.592666 | 8.407334      | 5.478743          | 2011-07-01 17:00:00   | 2011-07-03 20:00:00    |
+  | 2   | 2014 | 5     | Minnesota   | MN          | MRO         | East North Central | -0.1          | normal            | intentional attack | ... | 2279         | 1700.5    | 18.2         | 2.14          | 0.6        | 91.592666 | 8.407334      | 5.478743          | 2014-05-11 18:38:00   | 2014-05-11 18:39:00    |
+  | 3   | 2010 | 10    | Minnesota   | MN          | MRO         | East North Central | -1.5          | cold              | severe weather  | ... | 2279         | 1700.5    | 18.2         | 2.14          | 0.6        | 91.592666 | 8.407334      | 5.478743          | 2010-10-26 20:00:00   | 2010-10-28 22:00:00    |
+  | 4   | 2012 | 6     | Minnesota   | MN          | MRO         | East North Central | -0.1          | normal            | severe weather  | ... | 2279         | 1700.5    | 18.2         | 2.14          | 0.6        | 91.592666 | 8.407334      | 5.478743          | 2012-06-19 04:30:00   | 2012-06-20 23:00:00    |
+  | 5   | 2015 | 7     | Minnesota   | MN          | MRO         | East North Central | 1.2           | warm              | severe weather  | ... | 2279         | 1700.5    | 18.2         | 2.14          | 0.6        | 91.592666 | 8.407334      | 5.478743          | 2015-07-18 02:00:00   | 2015-07-19 07:00:00    |
 
-## Assessment of Missingness
+</details>
 
 ### Univariate Analysis
 We started with a grouped frequency distribution of the outages based on their dates. We noticed a large uptick in power outages from 2010-2011, followed by a steady decline. We hypothesize that the low number of outages in the earlier years is due to a less widespread infrastructure.
@@ -84,18 +86,87 @@ We started with a grouped frequency distribution of the outages based on their d
 We also looked at some other factors
 
 Severe Weather: we found that the uptick in 2011 was less great than that of all power outages, indicating that severe weather, which partially responsible, likely was not the sole reason why this happened. Generally, we thought this looked like the most evenly distributed distribution, with a left skew.
+<iframe src="yearly_distribution_severe weather.html" width=600 height=450 frameBorder=0></iframe>
 
 Intentional Attack: we noticed that there were little-to-no outages caused by intentional attack leading up to 2011, when there was a significant peak and steady decline. We find it unlikely there were no intentional attacks leading up to that year, rather, increased awareness, detection, and reporting led to that conclusion.
-
-System Operability Disruption: we found that within this graph, there were significantly more local minima and local maxima in comparison to other causes -- leading us to believe that outages due to system operability disruptions are a bit more random.
+<iframe src="yearly_distribution_intentional attack.html" width=600 height=450 frameBorder=0></iframe>
 
 Equipment Failure: We noticed that after dipping from 2010 to 2012 and reupping in 2013, the number of outages due to equipment failure dropped to 0. We believe this makes sense given that equipment failure is the most easily controllable/solvable for those in charge of power structures.
+<iframe src="yearly_distribution_equipment failure.html" width=600 height=450 frameBorder=0></iframe>
 
-Public Appeal: For some reason, the distribution has a major central tendency around 2009-2011, but our best guess for the reason as to why is the Great Recession, which began in 2008.
+### Bivariate Analysis
+This plot is "zoomed in" to a max of 25000 minute duration in order to get a better view of the spread. While there are noticeably long outages in early 2014, by the "eye-test" and by our linear regression line we noticed that there was a slight down trend in the average duration of outages over time.
+<iframe src="outage_duration.html" width=600 height=450 frameBorder=0></iframe>
 
-Fuel Supply Emergency: We noticed the distribution for this cause being left-skewed. We think that this is likely because of, similar to intentional attack, more of the outages were able to be traced back to fuel supply.
+Similar to the last scatter plot, we noticed that demand loss decreased over time as a general trend, but are looking to prove that in our hypothesis tests. Here we can see for example with the outage type being sever weather
+<iframe src="outage_duration_severe weather.html" width=600 height=450 frameBorder=0></iframe>
 
-Islanding: We once again noticed that there was no islanding up until a certain year. We hypothesize that this, however, could've been due to a transition by people towards reliance on solar energy -- the fluctuations in numbers of power outages by year could be due to differing levels of sunlight each year.
+### Interesting Aggregates
+We noticed that from the eye test, the most recent years generally had lower average outage durations across the board, which was an encouraging sign. Aside from that, however, there weren't too many strong trends.
+
+<details style="max-width: 600px;">
+  <summary>Click to expand table</summary>
+
+  | CLIMATE.REGION | Central | East North Central | Northeast | Northwest | South | Southeast | Southwest | West | West North Central |
+  | -------------- | ------- | ------------------ | --------- | --------- | ----- | --------- | --------- | ---- | ------------------- |
+  | YEAR           |         |                    |           |           |       |           |           |      |                     |
+  | 2000           | 1200.0  | 0.0                | 681.0     | 0.0       | 903.0 | 5384.0    | 33.0      | 0.0  | 0.0                 |
+  | 2001           | 0.0     | 0.0                | 298.5     | 0.0       | 3915.7| 241.0     | 0.0       | 653.0| 0.0                 |
+  | 2002           | 15420.0 | 3600.0             | 3130.0    | 0.0       | 10020.0| 1460.5    | 0.0       | 3028.6| 0.0                 |
+  | 2003           | 1842.8  | 7378.5             | 5127.1    | 4014.0    | 3476.3| 998.8     | 67.5      | 8612.0| 0.0                 |
+  | 2004           | 3588.0  | 5452.0             | 2406.1    | 3240.0    | 3686.2| 3380.7    | 33019.3   | 1091.3| 4.0                 |
+  | 2005           | 8427.8  | 5612.9             | 3269.3    | 0.0       | 5348.4| 7902.1    | 0.0       | 1406.2| 0.0                 |
+  | 2006           | 1895.8  | 6750.0             | 5062.1    | 6599.4    | 326.5 | 502.5     | 1289.5    | 2238.1| 9600.0              |
+  | 2007           | 2425.2  | 3600.7             | 2134.1    | 4158.0    | 4795.1| 600.5     | 283.0     | 871.0 | 0.0                 |
+  | 2008           | 3697.1  | 5401.2             | 3425.3    | 224.0     | 13058.5| 1341.9    | 871.0     | 1873.4| 60.0                |
+  | 2009           | 5135.2  | 12294.9            | 3112.8    | 1204.0    | 1631.1| 1611.2    | 2308.3    | 451.4 | 115.3               |
+  | 2010           | 4750.4  | 2995.2             | 5422.8    | 2580.0    | 1896.7| 598.4     | 1333.0    | 1448.4| 77.7                |
+  | 2011           | 1575.5  | 3354.9             | 2721.6    | 407.3     | 1396.5| 1110.6    | 537.3     | 2516.2| 240.0               |
+  | 2012           | 2673.5  | 2709.5             | 2796.2    | 335.7     | 1003.5| 1205.2    | 124.8     | 1115.0| 0.0                 |
+  | 2013           | 1952.1  | 3632.9             | 634.0     | 674.2     | 4412.8| 584.2     | 429.5     | 592.0 | 42.0                |
+  | 2014           | 996.3   | 10037.4            | 5536.2    | 385.0     | 543.5 | 1780.7    | 82.8      | 308.8| 56.0                |
+  | 2015           | 168.5   | 1961.3             | 1692.4    | 1075.9    | 1452.9| 1796.8    | 51.3      | 257.2| 0.0                 |
+  | 2016           | 1199.0  | 1139.3             | 1771.3    | 678.8     | 1947.6| 535.0     | 658.0     | 12433.8| 0.0                |
+
+</details>
+
+There was a general trend across all regions that the demand loss was shrinking, which is another encouraging sign that we are starting to minimize the impact of the outages
+
+## Assessment of Missingness
+As we can see there are columns that have many null values, such as DEMAND.LOSS.MW, which need to be filled in.
+Certainly! Here is the provided data on the columns Non-Null Count and Dtype converted into a Markdown table with collapsible sections:
+
+<details  style="max-width: 600px;">
+  <summary>Click to expand table</summary>
+
+  | Column                | Non-Null Count | Dtype              |
+  | -------------------- | -------------- | ------------------ |
+  | OBS                  | 1534           | int64              |
+  | YEAR                 | 1534           | int64              |
+  | MONTH                | 1525           | object             |
+  | U.S._STATE           | 1534           | object             |
+  | POSTAL.CODE          | 1534           | object             |
+  | NERC.REGION          | 1534           | object             |
+  | CLIMATE.REGION       | 1534           | object             |
+  | ANOMALY.LEVEL        | 1525           | float64            |
+  | CLIMATE.CATEGORY     | 1534           | object             |
+  | CAUSE.CATEGORY       | 1534           | object             |
+  | CAUSE.CATEGORY.DETAIL| 1534           | object             |
+  | HURRICANE.NAMES      | 1534           | object             |
+  | OUTAGE.DURATION      | 1476           | object             |
+  | DEMAND.LOSS.MW       | 829            | object             |
+  | CUSTOMERS.AFFECTED   | 1091           | object             |
+  | RES.PRICE            | 1512           | float64            |
+  | COM.PRICE            | 1512           | float64            |
+  | IND.PRICE            | 1512           | float64            |
+  | TOTAL.PRICE          | 1512           | float64            |
+  | RES.SALES            | 1512           | object             |
+  | ...                  | ...            | ...                |
+  | OUTAGE.START         | 1525           | datetime64[ns]     |
+  | OUTAGE.RESTORATION   | 1476           | datetime64[ns]     |
+
+</details>
+
 
 
 ## Hypothesis Testing
